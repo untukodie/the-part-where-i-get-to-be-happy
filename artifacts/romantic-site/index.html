@@ -248,6 +248,14 @@
       overflow: hidden;
     }
 
+    .closing {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      align-items: flex-start;
+      padding-top: 40px;
+      padding-bottom: 80px;
+    }
+
     .transition.active,
     .closing.active {
       display: grid;
@@ -608,6 +616,34 @@
       .nav button {
         min-width: 88px;
         padding: 11px 14px;
+      }
+
+      .closing {
+        padding-top: 32px;
+        padding-bottom: 120px;
+      }
+
+      .closing-text h2 {
+        font-size: clamp(28px, 8vw, 46px);
+      }
+
+      .closing-text p.long {
+        font-size: clamp(16px, 4.5vw, 22px);
+        line-height: 1.42;
+        margin-top: 16px;
+      }
+
+      .closing-buttons {
+        margin-top: 20px;
+      }
+
+      .secret-input-area {
+        margin-top: 28px;
+      }
+
+      .secret-input {
+        width: 170px;
+        font-size: 15px;
       }
     }
 
