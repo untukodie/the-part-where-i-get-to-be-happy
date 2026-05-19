@@ -1241,5 +1241,57 @@
 
     updateSlide();
   </script>
+
+<script>
+  window.unlockSecret = function () {
+    const input = document.getElementById("secretName");
+    const loading = document.getElementById("secretLoading");
+    const message = document.getElementById("secretMessage");
+    const error = document.getElementById("secretError");
+
+    if (!input || !loading || !message || !error) return;
+
+    const answer = input.value.trim().replace(/\s+/g, " ").toLowerCase();
+
+    if (answer !== "alodie oniria") {
+      error.classList.add("show");
+      message.classList.remove("show");
+      loading.style.display = "none";
+      return;
+    }
+
+    error.classList.remove("show");
+    message.classList.remove("show");
+    loading.style.display = "block";
+
+    setTimeout(() => {
+      loading.style.display = "none";
+      message.classList.add("show");
+      message.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 2800);
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("secretName");
+    const button = document.querySelector(".secret-unlock");
+
+    if (input) {
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          window.unlockSecret();
+        }
+      });
+    }
+
+    if (button) {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.unlockSecret();
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
