@@ -1,0 +1,68 @@
+I want to create a romantic interactive website for my girlfriend.
+
+I already uploaded/attached these files:
+- bg-bw.jpg = black and white couple photo, use it as the fixed dark background for the whole website.
+- cover-color.jpg = colored couple photo, use it as the opening cover photo and main photo.
+- semua-aku-dirayakan.mp3 = background music, play it only after the first Open button is clicked.
+
+Theme:
+dark romantic, cinematic, elegant, artistic, premium, emotional, mature, classy, manly, but still deeply romantic. Not pink, not childish, not too cute, and not too many hearts.
+
+Website concept:
+This is not a confession website. This is an archive of happiness for my girlfriend, about how lucky, proud, grateful, and happy I feel to finally have her.
+
+Opening cover:
+Use cover-color.jpg as the full cover photo with a dark overlay.
+Add the title:
+
+THE PART WHERE
+I GET TO BE HAPPY
+
+Subtitle:
+with you, because of you, and for us.
+
+Add the names aesthetically:
+Zavier Giordano Nathaniel
+&
+Alodie Oniria
+
+Add one button:
+Open
+
+When Open is clicked:
+- Start the music.
+- Show a cinematic transition screen before the prose starts.
+- The transition screen must not disappear automatically.
+- Add glowing circle animation, subtle sparkles, smooth fade effects, and elegant serif typography.
+
+Transition text:
+before the words begin
+i want you to feel how loved you are.
+not loudly, not perfectly,
+just honestly, gently, and completely.
+
+Add a button:
+Start Reading
+
+After clicking Start Reading:
+Show the prose in slide-by-slide cards.
+Each slide should be readable, not too crowded.
+Use Back and Next buttons.
+The first Back button should return to the transition screen.
+The last slide should go to a closing screen.
+
+Design:
+Use bg-bw.jpg as a fixed dark background with overlay.
+Use soft cream text, glassmorphism cards, subtle grain, fade animations, smooth transitions, and elegant serif fonts like Playfair Display and Cormorant Garamond.
+Make it responsive and optimized for mobile.
+Make it look very intentional, creative, aesthetic, and different from a basic template.
+
+Closing screen:
+After the ending slide, add a cinematic closing animation that stays on screen until the user clicks a button.
+The closing should say thank you for reading and express that I am happy, grateful, proud to have her, and willing to keep working for our relationship.
+
+Add two buttons:
+Back
+Read Again
+
+Please create everything in a single index.html file using HTML, CSS, and JavaScript.
