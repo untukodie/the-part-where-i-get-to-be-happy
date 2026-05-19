@@ -45,6 +45,8 @@ export default function App() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const [coverVisible, setCoverVisible] = useState(true);
+  const [secretInput, setSecretInput] = useState("");
+  const [secretUnlocked, setSecretUnlocked] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -96,6 +98,8 @@ export default function App() {
       setSlideIndex(0);
       setScreen("cover");
       setCoverVisible(true);
+      setSecretInput("");
+      setSecretUnlocked(false);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
@@ -107,6 +111,8 @@ export default function App() {
     fade(() => {
       setSlideIndex(slides.length - 1);
       setScreen("slides");
+      setSecretInput("");
+      setSecretUnlocked(false);
     });
   };
 
@@ -801,6 +807,105 @@ export default function App() {
               — Zavier
             </p>
 
+            {/* Hidden message unlock */}
+            {!secretUnlocked ? (
+              <div style={{ marginTop: "36px" }}>
+                <p
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontStyle: "italic",
+                    fontSize: "13px",
+                    letterSpacing: "0.14em",
+                    color: "rgba(240,230,214,0.22)",
+                    marginBottom: "10px",
+                    userSelect: "none",
+                  }}
+                >
+                  there is one more thing, just for you.
+                </p>
+                <input
+                  type="text"
+                  placeholder="who are you?"
+                  value={secretInput}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setSecretInput(val);
+                    if (val.trim().toLowerCase() === "alodie") {
+                      setSecretUnlocked(true);
+                    }
+                  }}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    borderBottom: "1px solid rgba(240,230,214,0.15)",
+                    color: "rgba(240,230,214,0.55)",
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontStyle: "italic",
+                    fontSize: "16px",
+                    letterSpacing: "0.12em",
+                    textAlign: "center",
+                    width: "180px",
+                    padding: "6px 4px",
+                    outline: "none",
+                  }}
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  marginTop: "36px",
+                  animation: "secretReveal 1.1s ease both",
+                  padding: "28px 24px",
+                  borderRadius: "20px",
+                  background: "rgba(240,230,214,0.04)",
+                  border: "1px solid rgba(240,230,214,0.1)",
+                  maxWidth: "580px",
+                  margin: "36px auto 0",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "11px",
+                    letterSpacing: "0.38em",
+                    textTransform: "uppercase",
+                    color: "rgba(240,230,214,0.35)",
+                    marginBottom: "18px",
+                  }}
+                >
+                  only for you, Alodie
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontStyle: "italic",
+                    fontSize: "clamp(20px, 3.4vw, 28px)",
+                    lineHeight: 1.55,
+                    color: "rgba(255,249,240,0.88)",
+                  }}
+                >
+                  You are the part of my life I will never stop being grateful for.
+                  Not just today, not just when it is easy — always.
+                  I love you more than I know how to say,
+                  so I wrote all of this instead.
+                  <br /><br />
+                  You deserve every good thing.
+                  And I intend to be one of them.
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontStyle: "italic",
+                    fontSize: "clamp(16px, 2.6vw, 22px)",
+                    color: "rgba(240,230,214,0.4)",
+                    marginTop: "18px",
+                  }}
+                >
+                  — yours, completely.
+                </p>
+              </div>
+            )}
+
             <div
               style={{
                 display: "flex",
@@ -911,6 +1016,13 @@ export default function App() {
           from { opacity: 0; transform: translateY(12px); }
           to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes secretReveal {
+          from { opacity: 0; transform: translateY(10px) scale(0.98); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        input::placeholder { color: rgba(240,230,214,0.2); }
 
         button:focus { outline: none; }
       `}</style>
