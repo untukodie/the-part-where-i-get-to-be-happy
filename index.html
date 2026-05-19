@@ -626,6 +626,111 @@
         padding: 11px 14px;
       }
     }
+  
+    .secret-area {
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(247,239,227,0.16);
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+    }
+
+    .secret-area .secret-label {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(20px, 3.5vw, 30px);
+      font-style: italic;
+      color: rgba(255,249,240,0.78);
+      letter-spacing: 0.04em;
+    }
+
+    .secret-input-wrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .secret-input {
+      width: min(100%, 280px);
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--cream);
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      text-align: center;
+      outline: none;
+    }
+
+    .secret-input::placeholder {
+      color: rgba(247,239,227,0.44);
+    }
+
+    .secret-unlock {
+      border: none;
+      border-radius: 999px;
+      padding: 13px 22px;
+      background: #f7efe3;
+      color: #11100f;
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+
+    .secret-loading {
+      display: none;
+      margin-top: 16px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      color: rgba(255,249,240,0.8);
+      animation: pulseText 1.4s ease-in-out infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.45; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    .secret-message {
+      display: none;
+      margin-top: 22px;
+      max-width: 720px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(21px, 3.7vw, 31px);
+      line-height: 1.45;
+      color: rgba(255,249,240,0.9);
+      animation: storyIn 0.9s ease both;
+    }
+
+    .secret-message.show {
+      display: block;
+    }
+
+    .secret-error {
+      display: none;
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,249,240,0.55);
+      letter-spacing: 0.05em;
+    }
+
+    .secret-error.show {
+      display: block;
+    }
+
+    .closing.active {
+      overflow-y: auto;
+      align-items: start;
+      padding-top: 58px;
+      padding-bottom: 120px;
+    }
+
   </style>
 </head>
 
@@ -945,6 +1050,42 @@
         <button class="closing-btn secondary" onclick="backToEnding()">Back</button>
         <button class="closing-btn" onclick="restartAll()">Read Again</button>
       </div>
+
+      <div class="secret-area">
+        <div class="secret-label">ada satu hal lagi, khusus buat kamu.</div>
+
+        <div class="secret-input-wrap">
+          <input
+            id="secretName"
+            class="secret-input"
+            type="text"
+            placeholder="who are you?"
+            autocomplete="off"
+          />
+          <button class="secret-unlock" onclick="unlockSecret()">Unlock</button>
+        </div>
+
+        <div class="secret-error" id="secretError">
+          coba tulis nama lengkapmu dengan benar.
+        </div>
+
+        <div class="secret-loading" id="secretLoading">
+          opening something only meant for you...
+        </div>
+
+        <div class="secret-message" id="secretMessage">
+          Alodie Oniria, kalau kamu sampai di sini, berarti ada satu ruang kecil lagi yang memang sengaja aku simpan buat kamu.
+          <br><br>
+          Makasih karena sudah membuat banyak bagian dari aku terasa diterima. Bersama kamu, hal kecil yang biasanya lewat begitu saja jadi terasa punya arti. Caramu mencari, caramu peduli, caramu tetap ada, semuanya bikin aku merasa dicintai dengan cara yang pelan tapi penuh.
+          <br><br>
+          Aku bangga punya kamu. Bangga bisa menyebut kamu milikku, bangga bisa jadi bagian dari hidupmu, dan bangga karena kita sama sama mau mengusahakan ini. Aku gk tahu akan selalu sempurna atau enggak, tapi aku mau terus belajar menjaga kamu, menjaga kita, dan memilih kamu dengan hati yang sama.
+          <br><br>
+          Kamu bukan cuma seseorang yang aku sayang. Kamu adalah bagian bahagia yang ingin aku rawat baik baik.
+          <br><br>
+          — Zavier
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -987,7 +1128,39 @@
         transition.style.display = "none";
         story.classList.add("show");
         current = 0;
-        updateSlide();
+    
+    function unlockSecret() {
+      const input = document.getElementById("secretName");
+      const loading = document.getElementById("secretLoading");
+      const message = document.getElementById("secretMessage");
+      const error = document.getElementById("secretError");
+
+      if (!input || !loading || !message || !error) return;
+
+      if (input.value.trim() !== "Alodie Oniria") {
+        error.classList.add("show");
+        message.classList.remove("show");
+        loading.style.display = "none";
+        return;
+      }
+
+      error.classList.remove("show");
+      message.classList.remove("show");
+      loading.style.display = "block";
+
+      setTimeout(() => {
+        loading.style.display = "none";
+        message.classList.add("show");
+      }, 2800);
+    }
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Enter" && document.activeElement && document.activeElement.id === "secretName") {
+        unlockSecret();
+      }
+    });
+
+    updateSlide();
       }, 780);
     }
 
