@@ -1,24 +1,1474 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>The Part Where I Get To Be Happy</title>
-    <meta name="description" content="The Part Where I Get To Be Happy — built on Replit. Update this description to reflect the app." />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="The Part Where I Get To Be Happy" />
-    <meta property="og:description" content="The Part Where I Get To Be Happy — built on Replit. Update this description to reflect the app." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="The Part Where I Get To Be Happy" />
-    <meta name="twitter:description" content="The Part Where I Get To Be Happy — built on Replit. Update this description to reflect the app." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Part Where I Get To Be Happy</title>
+
+  <meta property="og:title" content="The Part Where I Get To Be Happy" />
+  <meta property="og:description" content="with you, because of you, and for us." />
+  <meta property="og:image" content="cover-color.jpg" />
+  <meta name="theme-color" content="#0d0c0b" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #f7efe3;
+      --soft: #d8c7b7;
+      --muted: rgba(247, 239, 227, 0.72);
+      --dark: #0d0c0b;
+      --glass: rgba(20, 17, 15, 0.64);
+      --line: rgba(247, 239, 227, 0.22);
+      --gold: #d6b987;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--dark);
+      color: var(--cream);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(6, 6, 6, 0.76), rgba(6, 6, 6, 0.88)),
+        url("bg-bw.jpg") center center / cover no-repeat;
+      filter: grayscale(100%) contrast(1.05) brightness(0.76);
+      transform: scale(1.04);
+      z-index: -3;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 32%),
+        radial-gradient(circle at bottom, rgba(143, 102, 62, 0.12), transparent 38%),
+        rgba(0, 0, 0, 0.15);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.12;
+      background-image:
+        repeating-radial-gradient(circle at 0 0, rgba(255,255,255,0.2) 0 1px, transparent 1px 4px);
+      mix-blend-mode: soft-light;
+    }
+
+    .cover {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .cover.hide {
+      opacity: 0;
+      transform: scale(0.98);
+      pointer-events: none;
+    }
+
+    .cover-card {
+      width: min(100%, 780px);
+      border-radius: 34px;
+      overflow: hidden;
+      background: rgba(18, 15, 13, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.52);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      animation: coverRise 1.1s ease both;
+      position: relative;
+    }
+
+    @keyframes coverRise {
+      from {
+        opacity: 0;
+        transform: translateY(26px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .cover-photo {
+      height: min(74vh, 680px);
+      min-height: 540px;
+      background: url("cover-color.jpg") center center / cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
+      padding: 34px 22px;
+    }
+
+    .cover-photo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(7,7,7,0.78), rgba(7,7,7,0.18) 52%, rgba(7,7,7,0.08)),
+        radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 42%);
+      z-index: 1;
+    }
+
+    .cover-photo::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 26px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.74);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 0.96;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: #fff9f0;
+      text-shadow: 0 7px 28px rgba(0,0,0,0.46);
+      margin-bottom: 16px;
+    }
+
+    .sub {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(21px, 3.8vw, 32px);
+      font-style: italic;
+      color: rgba(255,249,240,0.88);
+      margin-bottom: 18px;
+    }
+
+    .names {
+      display: grid;
+      gap: 2px;
+      margin: 18px auto 20px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(22px, 4vw, 34px);
+      color: #fff9f0;
+      line-height: 1.1;
+    }
+
+    .names span:nth-child(2) {
+      font-size: 18px;
+      color: rgba(255,249,240,0.65);
+      font-style: italic;
+    }
+
+    .line {
+      width: 140px;
+      height: 1px;
+      background: rgba(255,255,255,0.28);
+      margin: 0 auto;
+    }
+
+    .open-btn,
+    .continue-btn,
+    .closing-btn {
+      margin-top: 24px;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 30px;
+      min-width: 172px;
+      background: #f7efe3;
+      color: #11100f;
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.38);
+      transition: 0.25s ease;
+    }
+
+    .open-btn:hover,
+    .continue-btn:hover,
+    .closing-btn:hover {
+      transform: translateY(-2px);
+      background: #fffaf2;
+    }
+
+    .transition,
+    .closing {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      background:
+        radial-gradient(circle at center, rgba(214,185,135,0.12), transparent 28%),
+        rgba(7, 6, 5, 0.96);
+      display: none;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .transition.active,
+    .closing.active {
+      display: grid;
+      animation: fadeIn 0.85s ease both;
+    }
+
+    .transition.done,
+    .closing.done {
+      animation: fadeOut 0.8s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .bloom {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(247,239,227,0.12);
+      border-radius: 50%;
+      animation: bloom 3.4s ease infinite;
+    }
+
+    .bloom.two {
+      width: 380px;
+      height: 380px;
+      animation-delay: 0.6s;
+      opacity: 0.65;
+    }
+
+    .bloom.three {
+      width: 520px;
+      height: 520px;
+      animation-delay: 1.1s;
+      opacity: 0.42;
+    }
+
+    @keyframes bloom {
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      45% {
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.12);
+        opacity: 0;
+      }
+    }
+
+    .transition-text,
+    .closing-text {
+      position: relative;
+      z-index: 3;
+      max-width: 760px;
+    }
+
+    .transition-text .small,
+    .closing-text .small {
+      font-size: 11px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(247,239,227,0.55);
+      margin-bottom: 16px;
+    }
+
+    .transition-text h2,
+    .closing-text h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(38px, 7vw, 78px);
+      line-height: 0.98;
+      font-weight: 500;
+      color: #fff9f0;
+      animation: textFloat 2.4s ease infinite alternate;
+    }
+
+    .transition-text p,
+    .closing-text p {
+      margin-top: 20px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(22px, 4vw, 34px);
+      line-height: 1.38;
+      color: rgba(255,249,240,0.82);
+    }
+
+    .closing-text p.long {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: clamp(20px, 3.5vw, 30px);
+      line-height: 1.45;
+    }
+
+    @keyframes textFloat {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+
+    .spark {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(247,239,227,0.72);
+      box-shadow: 0 0 16px rgba(247,239,227,0.6);
+      animation: drift 4.6s ease-in-out infinite;
+    }
+
+    .spark:nth-child(1) { top: 18%; left: 20%; animation-delay: .2s; }
+    .spark:nth-child(2) { top: 28%; right: 18%; animation-delay: .7s; }
+    .spark:nth-child(3) { bottom: 20%; left: 28%; animation-delay: 1.1s; }
+    .spark:nth-child(4) { bottom: 26%; right: 24%; animation-delay: 1.6s; }
+    .spark:nth-child(5) { top: 52%; left: 12%; animation-delay: 2s; }
+    .spark:nth-child(6) { top: 56%; right: 12%; animation-delay: 2.4s; }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.38; }
+      50% { transform: translateY(-18px) scale(1.45); opacity: 0.95; }
+    }
+
+    .story {
+      display: none;
+      min-height: 100vh;
+      padding: 22px;
+    }
+
+    .story.show {
+      display: block;
+      animation: storyIn 0.9s ease both;
+    }
+
+    @keyframes storyIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .story-shell {
+      width: min(100%, 850px);
+      min-height: calc(100vh - 44px);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .paper {
+      width: 100%;
+      border-radius: 32px;
+      padding: clamp(24px, 5vw, 48px);
+      background: rgba(18, 15, 13, 0.68);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 28px 90px rgba(0,0,0,0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paper::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    .slide {
+      display: none;
+      min-height: 470px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+      animation: slideIn 0.55s ease both;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-label {
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: rgba(247,239,227,0.45);
+      margin-bottom: 18px;
+    }
+
+    .slide h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.02;
+      margin-bottom: 18px;
+      letter-spacing: -0.035em;
+      color: #fff9f0;
+    }
+
+    .slide p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(24px, 4.2vw, 35px);
+      line-height: 1.42;
+      color: rgba(255,249,240,0.92);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .main-photo {
+      width: min(100%, 620px);
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.36);
+    }
+
+    .main-photo img {
+      width: 100%;
+      display: block;
+    }
+
+    .nav {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .nav button {
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--cream);
+      border-radius: 999px;
+      padding: 12px 18px;
+      min-width: 106px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+
+    .nav button:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    .nav button.primary {
+      background: #f7efe3;
+      color: #11100f;
+      border: none;
+      font-weight: 600;
+    }
+
+    .counter {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: rgba(247,239,227,0.46);
+    }
+
+    .ending-line {
+      width: 120px;
+      height: 1px;
+      background: var(--line);
+      margin: 22px auto;
+    }
+
+    .closing-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .closing-btn.secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: none;
+    }
+
+    .audio-toggle {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 12;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(18, 15, 13, 0.62);
+      color: var(--cream);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .audio-toggle.show {
+      display: flex;
+    }
+
+    @media (max-width: 640px) {
+      .cover {
+        padding: 14px;
+      }
+
+      .cover-photo {
+        min-height: 620px;
+        height: 84vh;
+      }
+
+      .story {
+        padding: 14px;
+      }
+
+      .slide {
+        min-height: 520px;
+      }
+
+      .nav {
+        gap: 8px;
+      }
+
+      .nav button {
+        min-width: 88px;
+        padding: 11px 14px;
+      }
+    }
+
+    /* ── SECRET MESSAGE FEATURE ── */
+
+    .secret-input-area {
+      margin-top: 36px;
+      text-align: center;
+      transition: opacity 0.5s ease;
+    }
+
+    .secret-hint {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      color: rgba(247,239,227,0.2);
+      margin-bottom: 12px;
+      user-select: none;
+    }
+
+    .secret-input-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .secret-input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(247,239,227,0.15);
+      color: rgba(247,239,227,0.65);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 17px;
+      letter-spacing: 0.1em;
+      text-align: center;
+      width: 200px;
+      padding: 6px 4px;
+      outline: none;
+      transition: border-bottom-color 0.3s ease;
+    }
+
+    .secret-input::placeholder {
+      color: rgba(247,239,227,0.18);
+    }
+
+    .secret-input:focus {
+      border-bottom-color: rgba(247,239,227,0.3);
+    }
+
+    .secret-unlock-btn {
+      background: transparent;
+      border: 1px solid rgba(247,239,227,0.15);
+      color: rgba(247,239,227,0.38);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      padding: 7px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+
+    .secret-unlock-btn:hover {
+      border-color: rgba(247,239,227,0.3);
+      color: rgba(247,239,227,0.75);
+    }
+
+    /* Loading screen */
+    .secret-loading {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(7,6,5,0.98);
+      display: none;
+      place-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .secret-loading.active {
+      display: grid;
+      animation: fadeIn 0.85s ease both;
+    }
+
+    .loading-inner {
+      position: relative;
+      z-index: 3;
+    }
+
+    .loading-orb-wrap {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading-orb-wrap .orb-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(247,239,227,0.1);
+      animation: loadingRing 2.8s ease-in-out infinite;
+    }
+
+    .loading-orb-wrap .orb-ring:nth-child(1) {
+      width: 30px; height: 30px;
+      animation-delay: 0s;
+    }
+
+    .loading-orb-wrap .orb-ring:nth-child(2) {
+      width: 56px; height: 56px;
+      animation-delay: 0.4s;
+    }
+
+    .loading-orb-wrap .orb-ring:nth-child(3) {
+      width: 90px; height: 90px;
+      animation-delay: 0.8s;
+    }
+
+    .loading-orb-wrap .orb-core {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(214,185,135,0.85), rgba(247,239,227,0.4));
+      box-shadow: 0 0 18px rgba(214,185,135,0.5), 0 0 40px rgba(214,185,135,0.2);
+      animation: coreGlow 2.2s ease infinite alternate;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes loadingRing {
+      0% { transform: scale(0.4); opacity: 0; }
+      40% { opacity: 0.8; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    @keyframes coreGlow {
+      from { transform: scale(1); opacity: 0.6; }
+      to { transform: scale(1.3); opacity: 1; }
+    }
+
+    .loading-bloom {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(247,239,227,0.06);
+      animation: bloom 3.4s ease infinite;
+      pointer-events: none;
+    }
+
+    .loading-bloom.lb2 {
+      animation-delay: 0.7s;
+      opacity: 0.6;
+    }
+
+    .loading-bloom.lb3 {
+      animation-delay: 1.3s;
+      opacity: 0.38;
+    }
+
+    .loading-caption {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(20px, 3.5vw, 30px);
+      color: rgba(247,239,227,0.52);
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      animation: breathe 2.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes breathe {
+      from { opacity: 0.35; transform: translateY(0); }
+      to { opacity: 0.8; transform: translateY(-5px); }
+    }
+
+    /* Secret reveal screen */
+    .secret-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background:
+        radial-gradient(circle at center, rgba(214,185,135,0.09), transparent 42%),
+        rgba(7,6,5,0.97);
+      display: none;
+      place-items: center;
+      padding: 28px 24px;
+      text-align: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .secret-screen.active {
+      display: grid;
+      animation: fadeIn 1.1s ease both;
+    }
+
+    .secret-screen .s-bloom {
+      position: fixed;
+      border-radius: 50%;
+      border: 1px solid rgba(247,239,227,0.07);
+      animation: bloom 4s ease infinite;
+      pointer-events: none;
+    }
+
+    .secret-screen .s-bloom.sb2 { animation-delay: 0.8s; opacity: 0.55; }
+    .secret-screen .s-bloom.sb3 { animation-delay: 1.5s; opacity: 0.32; }
+
+    .secret-content {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+      width: 100%;
+      animation: secretReveal 1s ease both;
+      animation-delay: 0.2s;
+    }
+
+    @keyframes secretReveal {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .secret-eyebrow {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 11px;
+      letter-spacing: 0.44em;
+      text-transform: uppercase;
+      color: rgba(247,239,227,0.32);
+      margin-bottom: 24px;
+    }
+
+    .secret-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(38px, 7.5vw, 76px);
+      font-weight: 500;
+      line-height: 0.97;
+      color: #fff9f0;
+      margin-bottom: 28px;
+      animation: textFloat 2.8s ease-in-out infinite alternate;
+    }
+
+    .secret-divider {
+      width: 80px;
+      height: 1px;
+      background: rgba(247,239,227,0.18);
+      margin: 0 auto 32px;
+    }
+
+    .secret-body {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(22px, 3.8vw, 32px);
+      line-height: 1.54;
+      color: rgba(255,249,240,0.88);
+      max-width: 660px;
+      margin: 0 auto 20px;
+    }
+
+    .secret-sign {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(17px, 2.8vw, 24px);
+      color: rgba(247,239,227,0.4);
+      margin-top: 24px;
+    }
+
+    .secret-close-btn {
+      margin-top: 40px;
+      border: 1px solid rgba(247,239,227,0.18);
+      border-radius: 999px;
+      padding: 12px 32px;
+      background: transparent;
+      color: rgba(247,239,227,0.55);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+
+    .secret-close-btn:hover {
+      border-color: rgba(247,239,227,0.36);
+      color: rgba(247,239,227,0.9);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+
+  <audio id="song" src="semua-aku-dirayakan.mp3" loop></audio>
+
+  <button class="audio-toggle" id="audioToggle" onclick="toggleAudio()">♪</button>
+
+  <section class="cover" id="cover">
+    <div class="cover-card">
+      <div class="cover-photo">
+        <div class="cover-content">
+          <div class="kicker">a little archive of happiness</div>
+
+          <h1>
+            THE PART WHERE<br>
+            I GET TO BE HAPPY
+          </h1>
+
+          <p class="sub">
+            with you, because of you, and for us.
+          </p>
+
+          <div class="line"></div>
+
+          <div class="names">
+            <span>Zavier Giordano Nathaniel</span>
+            <span>&</span>
+            <span>Alodie Oniria</span>
+          </div>
+
+          <button class="open-btn" onclick="startStory()">Open</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="transition" id="transition">
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+
+    <div class="bloom"></div>
+    <div class="bloom two"></div>
+    <div class="bloom three"></div>
+
+    <div class="transition-text">
+      <div class="small">Before the words begin</div>
+      <h2>I want you to feel how loved you are.</h2>
+      <p>
+        Not loudly, not perfectly,<br>
+        just honestly, gently, and completely.
+      </p>
+
+      <button class="continue-btn" onclick="enterStory()">Start Reading</button>
+    </div>
+  </div>
+
+  <main class="story" id="story">
+    <div class="story-shell">
+      <div class="paper">
+
+        <section class="slide active">
+          <div class="slide-label">opening</div>
+          <h2>Yang Akhirnya Kumiliki</h2>
+          <p>
+            Aku pernah mengira memilikimu adalah langit yang terlalu jauh untuk kugapai,
+            sesuatu yang hanya bisa kupandangi dari kejauhan sambil diam-diam berharap
+            semesta suatu hari akan berbaik hati padaku.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">one</div>
+          <p>
+            Dulu, namamu seperti cahaya yang indah,
+            dekat dalam pandang, tetapi terasa mustahil
+            untuk benar-benar singgah di genggamku.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">two</div>
+          <p>
+            Aku pernah terbiasa mencintaimu dalam bentuk paling sunyi.
+            Menyimpan rasa tanpa banyak suara,
+            menjaga hangatmu dari jauh,
+            dan membiarkan hati belajar menerima
+            bahwa tidak semua yang disayang harus selalu dimiliki.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">three</div>
+          <p>
+            Ada masa ketika aku hanya bisa membiarkan namamu tinggal sebagai rahasia,
+            tumbuh diam-diam di sela waktu yang belum benar-benar berpihak.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">four</div>
+          <p>
+            Namun kini, setelah segala jeda, segala diam,
+            dan segala jalan yang sempat berputar,
+            semesta akhirnya menurunkanmu pelan-pelan ke dalam hidupku.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="main-photo">
+            <img src="cover-color.jpg" alt="Zavier Giordano Nathaniel and Alodie Oniria" />
+          </div>
+          <div class="slide-label">five</div>
+          <p>
+            Dan jujur, sampai sekarang aku masih sering tidak percaya
+            bahwa seseorang yang dulu hanya berani kupandangi,
+            sekarang benar-benar bisa kusebut milikku.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">six</div>
+          <p>
+            Ada bahagia yang sulit kuterjemahkan sejak kamu hadir
+            sebagai rumah yang benar-benar bisa kutinggali.
+            Ada lega yang pelan-pelan tumbuh di dadaku,
+            seolah seluruh rasa yang dulu hanya bisa kusimpan
+            akhirnya menemukan tempat pulangnya.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">seven</div>
+          <p>
+            Bersamamu, aku merasa banyak hal kecil dari diriku ikut dirayakan.
+            Bukan dengan cara yang riuh,
+            tetapi lewat perhatian sederhana,
+            lewat caramu mencari,
+            caramu tetap ada,
+            dan caramu membuat aku merasa cukup untuk dicintai.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">eight</div>
+          <p>
+            Kamu bukan lagi sekadar metafora yang kuselipkan dalam diam.
+            Kamu sudah menjadi nyata,
+            menjadi nama yang menetap,
+            menjadi hangat yang kupilih untuk kujaga.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">nine</div>
+          <p>
+            Jika cinta adalah bentala,
+            maka aku ingin menjadi tanah yang cukup kuat
+            untuk menampung setiap lelahmu.
+            Jika hidup suatu hari berubah menjadi badai,
+            maka biarkan aku menjadi atap yang pertama kali kamu cari.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">ten</div>
+          <p>
+            Aku ingin menjadi tempat yang tidak membuatmu sungkan untuk jatuh,
+            tempat yang tidak membuatmu takut untuk rapuh,
+            tempat yang membuatmu tahu bahwa direpotkan olehmu
+            tidak akan pernah terasa sebagai beban.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">eleven</div>
+          <p>
+            Aku ingin menjadi seseorang yang bisa kamu andalkan
+            dalam hal sekecil apa pun.
+            Dalam hari-hari ringanmu, aku ingin ada.
+            Dalam hari-hari beratmu, aku juga ingin tetap ada.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">twelve</div>
+          <p>
+            Aku ingin menjadi garda terdepanmu,
+            bukan hanya saat semuanya mudah,
+            tetapi juga saat dunia terasa terlalu bising
+            dan kamu butuh satu tempat yang tetap tenang untuk pulang.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">thirteen</div>
+          <p>
+            Sebab setelah sulitnya sampai di titik ini,
+            aku tidak ingin mencintaimu dengan setengah hati.
+            Aku tidak ingin menjagamu dengan ragu-ragu.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">fourteen</div>
+          <p>
+            Aku ingin merawatmu seperti aksara terakhir
+            dalam surat yang paling berharga;
+            pelan, hati-hati, dan sepenuh hati,
+            karena aku tahu rasanya pernah hanya bisa mengagumi tanpa memiliki.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">fifteen</div>
+          <p>
+            Dan mungkin itu sebabnya,
+            sekarang ketika semesta akhirnya membiarkanku memilikimu,
+            aku tidak hanya merasa bahagia.
+            Aku juga merasa bersyukur,
+            merasa bangga,
+            dan merasa ingin menjaga semuanya dengan sungguh-sungguh.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">sixteen</div>
+          <p>
+            Kamu adalah hal baik yang akhirnya sampai,
+            dan aku tidak ingin menyia-nyiakan itu.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">seventeen</div>
+          <p>
+            Kalau suatu hari nanti kamu bertanya sebesar apa rasaku,
+            mungkin aku tidak akan selalu pandai menjawabnya
+            dengan kalimat yang sempurna.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">eighteen</div>
+          <p>
+            Tetapi aku ingin kamu tahu satu hal:
+            aku ingin tetap tinggal.
+            Aku ingin tetap ada.
+            Aku ingin tetap menjadi seseorang yang membuatmu merasa aman,
+            dicintai, diusahakan, dan tidak sendirian.
+          </p>
+        </section>
+
+        <section class="slide">
+          <div class="slide-label">ending</div>
+          <h2>for us.</h2>
+          <div class="ending-line"></div>
+          <p>
+            Karena setelah susahnya memilikimu,
+            aku tahu bahwa cinta ini bukan sesuatu yang ingin kulewati begitu saja.
+            Ini adalah sesuatu yang ingin kurawat,
+            kujaga,
+            dan kuusahakan,
+            selama kamu masih ingin berjalan bersamaku.
+          </p>
+        </section>
+
+        <div class="nav">
+          <button onclick="prevSlide()">Back</button>
+          <div class="counter" id="counter">01 / 19</div>
+          <button class="primary" onclick="nextSlide()" id="nextBtn">Next</button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="closing" id="closing">
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+    <span class="spark"></span>
+
+    <div class="bloom"></div>
+    <div class="bloom two"></div>
+    <div class="bloom three"></div>
+
+    <div class="closing-text">
+      <div class="small">One last thing</div>
+      <h2>Thank you for being here.</h2>
+
+      <p class="long">
+        Makasih ya, udah baca semuanya sampai akhir walaupun kamu bacanya dalam hati😋. 
+        Makasih karena sudah jadi bagian yang bikin aku merasa seberuntung ini.
+        Semenjak kamu ada, banyak hal kecil di hidupku terasa lebih hangat,
+        lebih ringan, dan lebih pantas untuk disyukuri.
+      </p>
+
+      <p class="long">
+        Aku gak tau seberapa sering aku bisa menjelaskan rasa ini dengan kalimat yang sempurna,
+        Tapi aku tahu satu hal:
+        Aku bahagia punya kamu,
+        Aku bahagia setelah mengenalmu jauh dari sebelumnya,
+        Aku bangga bisa menyebut kamu milikku,
+        Dan aku mau terus mengusahakan kita sebaik yang aku bisa.
+      </p>
+
+      <div class="closing-buttons">
+        <button class="closing-btn secondary" onclick="backToEnding()">Back</button>
+        <button class="closing-btn" onclick="restartAll()">Read Again</button>
+      </div>
+
+      <!-- SECRET MESSAGE INPUT — appended after existing closing content -->
+      <div class="secret-input-area" id="secretInputArea">
+        <p class="secret-hint">ada satu hal lagi, khusus untuk kamu.</p>
+        <div class="secret-input-row">
+          <input
+            type="text"
+            class="secret-input"
+            id="secretInput"
+            placeholder="who are you?"
+            autocomplete="off"
+          />
+          <button class="secret-unlock-btn" onclick="tryUnlock()">Unlock</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECRET LOADING SCREEN -->
+  <div class="secret-loading" id="secretLoading">
+    <div class="loading-bloom lb2" style="width:260px;height:260px;"></div>
+    <div class="loading-bloom lb2" style="width:420px;height:420px;"></div>
+    <div class="loading-bloom lb3" style="width:600px;height:600px;"></div>
+
+    <div class="loading-inner">
+      <div class="loading-orb-wrap">
+        <div class="orb-ring"></div>
+        <div class="orb-ring"></div>
+        <div class="orb-ring"></div>
+        <div class="orb-core"></div>
+      </div>
+      <p class="loading-caption">
+        sebentar ya,<br>
+        aku sedang menyiapkan sesuatu<br>
+        yang hanya untukmu.
+      </p>
+    </div>
+  </div>
+
+  <!-- SECRET REVEAL SCREEN -->
+  <div class="secret-screen" id="secretScreen">
+    <div class="s-bloom" style="width:240px;height:240px;"></div>
+    <div class="s-bloom sb2" style="width:420px;height:420px;"></div>
+    <div class="s-bloom sb3" style="width:640px;height:640px;"></div>
+
+    <div class="secret-content">
+      <p class="secret-eyebrow">hanya untuk Alodie Oniria</p>
+
+      <h2 class="secret-title">
+        Yang Tidak Pernah<br>Cukup Kukatakan
+      </h2>
+
+      <div class="secret-divider"></div>
+
+      <p class="secret-body">
+        Alodie, ada hal-hal yang tidak cukup hanya diucapkan sekali —
+        dan ini salah satunya.
+      </p>
+
+      <p class="secret-body">
+        Kamu membuat aku merasa dirayakan dengan cara yang bahkan tidak pernah
+        aku minta. Bukan lewat hal-hal besar, tetapi lewat caramu memilihku
+        setiap hari, dengan tenang, dengan tulus, tanpa harus diminta.
+        Itu bukan hal kecil. Itu adalah segalanya.
+      </p>
+
+      <p class="secret-body">
+        Aku bangga menjadi milikmu. Bukan sekadar kata — tapi dalam cara aku
+        ingin jadi lebih baik, ingin lebih hadir, ingin terus layak untuk
+        dipilih olehmu lagi dan lagi.
+        Kamu mengeluarkan versi diriku yang ingin aku pertahankan.
+      </p>
+
+      <p class="secret-body">
+        Dan di antara semua hal yang sudah kuusahakan dalam hidup ini,
+        menjaga kamu dan merawat kita adalah yang paling ingin kulakukan
+        dengan sungguh-sungguh. Bukan karena terpaksa.
+        Tapi karena aku tahu — tidak ada yang lebih berharga dari ini.
+      </p>
+
+      <p class="secret-body">
+        Terima kasih sudah ada.
+        Terima kasih sudah mau dipilih olehku.
+        Aku tidak akan menyia-nyiakan itu.
+      </p>
+
+      <p class="secret-sign">— Zavier, yang sangat bersyukur memilikimu.</p>
+
+      <button class="secret-close-btn" onclick="closeSecret()">tutup</button>
+    </div>
+  </div>
+
+  <script>
+    const song = document.getElementById("song");
+    const cover = document.getElementById("cover");
+    const transition = document.getElementById("transition");
+    const story = document.getElementById("story");
+    const closing = document.getElementById("closing");
+    const audioToggle = document.getElementById("audioToggle");
+    const slides = document.querySelectorAll(".slide");
+    const counter = document.getElementById("counter");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let current = 0;
+
+    function playSong() {
+      song.volume = 0.55;
+      song.play().catch(() => {});
+      audioToggle.classList.add("show");
+    }
+
+    function startStory() {
+      playSong();
+      cover.classList.add("hide");
+
+      setTimeout(() => {
+        cover.style.display = "none";
+        transition.classList.remove("done");
+        transition.style.display = "grid";
+        transition.classList.add("active");
+      }, 650);
+    }
+
+    function enterStory() {
+      transition.classList.add("done");
+
+      setTimeout(() => {
+        transition.classList.remove("active");
+        transition.style.display = "none";
+        story.classList.add("show");
+        current = 0;
+        updateSlide();
+      }, 780);
+    }
+
+    function updateSlide() {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === current);
+      });
+
+      counter.textContent =
+        String(current + 1).padStart(2, "0") +
+        " / " +
+        String(slides.length).padStart(2, "0");
+
+      nextBtn.textContent = current === slides.length - 1 ? "Closing" : "Next";
+    }
+
+    function nextSlide() {
+      if (current < slides.length - 1) {
+        current++;
+        updateSlide();
+      } else {
+        showClosing();
+      }
+    }
+
+    function prevSlide() {
+      if (current > 0) {
+        current--;
+        updateSlide();
+      } else {
+        story.classList.remove("show");
+        transition.classList.remove("done");
+        transition.style.display = "grid";
+        transition.classList.add("active");
+      }
+    }
+
+    function showClosing() {
+      story.classList.remove("show");
+      closing.classList.remove("done");
+      closing.style.display = "grid";
+      closing.classList.add("active");
+    }
+
+    function backToEnding() {
+      closing.classList.add("done");
+
+      setTimeout(() => {
+        closing.classList.remove("active");
+        closing.style.display = "none";
+        story.classList.add("show");
+        current = slides.length - 1;
+        updateSlide();
+      }, 780);
+    }
+
+    function restartAll() {
+      closing.classList.add("done");
+
+      setTimeout(() => {
+        closing.classList.remove("active");
+        closing.style.display = "none";
+        story.classList.add("show");
+        current = 0;
+        updateSlide();
+      }, 780);
+    }
+
+    function toggleAudio() {
+      if (song.paused) {
+        song.play();
+        audioToggle.textContent = "♪";
+      } else {
+        song.pause();
+        audioToggle.textContent = "×";
+      }
+    }
+
+    updateSlide();
+
+    /* ── SECRET MESSAGE FEATURE ── */
+
+    const secretInputEl  = document.getElementById("secretInput");
+    const secretLoading  = document.getElementById("secretLoading");
+    const secretScreen   = document.getElementById("secretScreen");
+    const secretInputArea = document.getElementById("secretInputArea");
+
+    secretInputEl.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") tryUnlock();
+    });
+
+    function tryUnlock() {
+      const val = secretInputEl.value.trim();
+      if (val === "Alodie Oniria") {
+        secretInputArea.style.opacity = "0";
+        secretInputArea.style.pointerEvents = "none";
+
+        setTimeout(() => {
+          secretLoading.classList.add("active");
+        }, 400);
+
+        setTimeout(() => {
+          secretLoading.classList.remove("active");
+          secretLoading.style.display = "none";
+          secretScreen.classList.add("active");
+        }, 3200);
+      } else {
+        secretInputEl.style.borderBottomColor = "rgba(247,150,150,0.45)";
+        secretInputEl.style.color = "rgba(247,200,200,0.7)";
+        setTimeout(() => {
+          secretInputEl.style.borderBottomColor = "";
+          secretInputEl.style.color = "";
+        }, 700);
+      }
+    }
+
+    function closeSecret() {
+      secretScreen.classList.remove("active");
+      secretScreen.style.display = "none";
+    }
+  </script>
+</body>
 </html>
