@@ -731,6 +731,80 @@
       padding-bottom: 120px;
     }
 
+  
+    .secret-fullscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      overflow-y: auto;
+      padding: 48px 22px 90px;
+      background:
+        radial-gradient(circle at center, rgba(214,185,135,0.10), transparent 32%),
+        rgba(6, 5, 5, 0.97);
+      text-align: center;
+      animation: fadeIn 0.9s ease both;
+    }
+
+    .secret-fullscreen.show {
+      display: block;
+    }
+
+    .secret-fullscreen-inner {
+      width: min(100%, 780px);
+      margin: 0 auto;
+      padding: 32px 18px 50px;
+      position: relative;
+    }
+
+    .secret-fullscreen .secret-kicker {
+      font-size: 11px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(247,239,227,0.52);
+      margin-bottom: 18px;
+    }
+
+    .secret-fullscreen h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 0.98;
+      color: #fff9f0;
+      margin-bottom: 28px;
+      letter-spacing: -0.04em;
+      text-shadow: 0 8px 28px rgba(0,0,0,0.55);
+    }
+
+    .secret-fullscreen p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(22px, 4vw, 34px);
+      line-height: 1.48;
+      color: rgba(255,249,240,0.90);
+      margin: 0 auto 24px;
+      max-width: 720px;
+    }
+
+    .secret-sign {
+      margin-top: 28px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(18px, 3.5vw, 27px);
+      font-style: italic;
+      color: rgba(255,249,240,0.66);
+    }
+
+    .secret-close {
+      margin-top: 34px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--cream);
+      border-radius: 999px;
+      padding: 12px 28px;
+      font-family: "Inter", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 
@@ -1289,6 +1363,110 @@
         e.preventDefault();
         window.unlockSecret();
       });
+    }
+  });
+</script>
+
+
+  <div class="secret-fullscreen" id="secretFullScreen">
+    <div class="secret-fullscreen-inner">
+      <div class="secret-kicker">hanya untuk alodie oniria</div>
+
+      <h2>Yang Tidak Pernah<br>Cukup Kukatakan</h2>
+
+      <p>
+        Alodie, ada hal-hal yang tidak cukup hanya diucapkan sekali —
+        dan ini salah satunya.
+      </p>
+
+      <p>
+        Kamu membuat aku merasa dirayakan dengan cara yang bahkan tidak pernah aku minta.
+        Bukan lewat hal-hal besar, tetapi lewat caramu memilihku setiap hari,
+        dengan tenang, dengan tulus, tanpa harus diminta.
+        Itu bukan hal kecil. Itu adalah segalanya.
+      </p>
+
+      <p>
+        Aku bangga menjadi milikmu. Bukan sekadar kata —
+        tapi dalam cara aku ingin jadi lebih baik, ingin lebih hadir,
+        ingin terus layak untuk dipilih olehmu lagi dan lagi.
+        Kamu mengeluarkan versi diriku yang ingin aku pertahankan.
+      </p>
+
+      <p>
+        Dan di antara semua hal yang sudah kuusahakan dalam hidup ini,
+        menjaga kamu dan merawat kita adalah yang paling ingin kulakukan
+        dengan sungguh-sungguh. Bukan karena terpaksa.
+        Tapi karena aku tahu — tidak ada yang lebih berharga dari ini.
+      </p>
+
+      <p>
+        Terima kasih sudah ada. Terima kasih sudah mau dipilih olehku.
+        Aku tidak akan menyia-nyiakan itu.
+      </p>
+
+      <div class="secret-sign">
+        — Zavier, yang sangat bersyukur memilikimu.
+      </div>
+
+      <button class="secret-close" onclick="closeSecretFull()">tutup</button>
+    </div>
+  </div>
+
+
+<script>
+  window.unlockSecret = function () {
+    const input = document.getElementById("secretName");
+    const loading = document.getElementById("secretLoading");
+    const oldMessage = document.getElementById("secretMessage");
+    const error = document.getElementById("secretError");
+    const full = document.getElementById("secretFullScreen");
+
+    if (!input || !loading || !error || !full) return;
+
+    const answer = input.value.trim().replace(/\s+/g, " ").toLowerCase();
+
+    if (answer !== "alodie oniria") {
+      error.classList.add("show");
+      if (oldMessage) oldMessage.classList.remove("show");
+      loading.style.display = "none";
+      return;
+    }
+
+    error.classList.remove("show");
+    if (oldMessage) oldMessage.classList.remove("show");
+    loading.style.display = "block";
+
+    setTimeout(() => {
+      loading.style.display = "none";
+      full.classList.add("show");
+      full.scrollTo({ top: 0, behavior: "smooth" });
+    }, 2800);
+  };
+
+  window.closeSecretFull = function () {
+    const full = document.getElementById("secretFullScreen");
+    if (full) full.classList.remove("show");
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("secretName");
+    const button = document.querySelector(".secret-unlock");
+
+    if (input) {
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          window.unlockSecret();
+        }
+      });
+    }
+
+    if (button) {
+      button.onclick = function (e) {
+        e.preventDefault();
+        window.unlockSecret();
+      };
     }
   });
 </script>
