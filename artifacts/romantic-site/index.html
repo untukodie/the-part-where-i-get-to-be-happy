@@ -6,9 +6,14 @@
 
   <title>The Part Where I Get To Be Happy</title>
 
-  <meta property="og:title" content="The Part Where I Get To Be Happy" />
+  <meta property="og:title" content="THE PART WHERE I GET TO BE HAPPY" />
   <meta property="og:description" content="with you, because of you, and for us." />
-  <meta property="og:image" content="cover-color.jpg" />
+  <meta property="og:image" content="social-preview.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="THE PART WHERE I GET TO BE HAPPY" />
+  <meta name="twitter:description" content="with you, because of you, and for us." />
+  <meta name="twitter:image" content="social-preview.jpg" />
   <meta name="theme-color" content="#0d0c0b" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -647,6 +652,61 @@
       }
     }
 
+    /* ── SCROLL INDICATOR ── */
+
+    .scroll-hint {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 25;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      pointer-events: none;
+    }
+
+    .scroll-hint.visible {
+      display: flex;
+      animation: hintFadeIn 0.7s ease both;
+    }
+
+    .scroll-hint.gone {
+      display: none;
+    }
+
+    .scroll-hint span {
+      display: block;
+      width: 9px;
+      height: 9px;
+      border-right: 1px solid rgba(247,239,227,0.4);
+      border-bottom: 1px solid rgba(247,239,227,0.4);
+      transform: rotate(45deg);
+      animation: chevronDrop 1.8s ease-in-out infinite;
+    }
+
+    .scroll-hint span:nth-child(2) {
+      animation-delay: 0.22s;
+      opacity: 0.55;
+    }
+
+    .scroll-hint span:nth-child(3) {
+      animation-delay: 0.44s;
+      opacity: 0.25;
+    }
+
+    @keyframes chevronDrop {
+      0%   { opacity: 0;    transform: rotate(45deg) translateY(-3px); }
+      45%  { opacity: 1;    transform: rotate(45deg) translateY(3px); }
+      100% { opacity: 0;    transform: rotate(45deg) translateY(5px); }
+    }
+
+    @keyframes hintFadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
     /* ── SECRET MESSAGE FEATURE ── */
 
     .secret-input-area {
@@ -1229,6 +1289,12 @@
     <div class="bloom two"></div>
     <div class="bloom three"></div>
 
+    <div class="scroll-hint" id="scrollHint">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
     <div class="closing-text">
       <div class="small">One last thing</div>
       <h2>Thank you for being here.</h2>
@@ -1422,14 +1488,35 @@
       }
     }
 
+    const scrollHint = document.getElementById("scrollHint");
+
+    function showScrollHint() {
+      scrollHint.classList.remove("gone");
+      scrollHint.classList.add("visible");
+    }
+
+    function hideScrollHint() {
+      scrollHint.classList.remove("visible");
+      scrollHint.classList.add("gone");
+    }
+
+    closing.addEventListener("scroll", function() {
+      if (closing.scrollTop > 30) {
+        hideScrollHint();
+      }
+    });
+
     function showClosing() {
       story.classList.remove("show");
       closing.classList.remove("done");
       closing.style.display = "grid";
       closing.classList.add("active");
+      closing.scrollTop = 0;
+      setTimeout(showScrollHint, 900);
     }
 
     function backToEnding() {
+      hideScrollHint();
       closing.classList.add("done");
 
       setTimeout(() => {
@@ -1442,6 +1529,7 @@
     }
 
     function restartAll() {
+      hideScrollHint();
       closing.classList.add("done");
 
       setTimeout(() => {
